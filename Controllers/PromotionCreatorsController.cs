@@ -10,107 +10,107 @@ using BeautyWebApp.Models;
 
 namespace BeautyWebApp.Controllers
 {
-    public class PromotionsController : Controller
+    public class PromotionCreatorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Promotions
+        // GET: PromotionCreators
         public ActionResult Index()
         {
-            return View(db.Promotions.ToList());
+            return View(db.PromotionCreators.ToList());
         }
 
-        // GET: Promotions/Details/5
+        // GET: PromotionCreators/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Promotion promotion = db.Promotions.Find(id);
-            if (promotion == null)
+            PromotionCreator promotionCreator = db.PromotionCreators.Find(id);
+            if (promotionCreator == null)
             {
                 return HttpNotFound();
             }
-            return View(promotion);
+            return View(promotionCreator);
         }
 
-        // GET: Promotions/Create
+        // GET: PromotionCreators/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Promotions/Create
+        // POST: PromotionCreators/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PromotionCreatorId,Description,Duration,Venue,PromotionType,Cost,PromotionDate")] Promotion promotion)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PhoneNumber,Email")] PromotionCreator promotionCreator)
         {
             if (ModelState.IsValid)
             {
-                db.Promotions.Add(promotion);
+                db.PromotionCreators.Add(promotionCreator);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(promotion);
+            return View(promotionCreator);
         }
 
-        // GET: Promotions/Edit/5
+        // GET: PromotionCreators/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Promotion promotion = db.Promotions.Find(id);
-            if (promotion == null)
+            PromotionCreator promotionCreator = db.PromotionCreators.Find(id);
+            if (promotionCreator == null)
             {
                 return HttpNotFound();
             }
-            return View(promotion);
+            return View(promotionCreator);
         }
 
-        // POST: Promotions/Edit/5
+        // POST: PromotionCreators/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PromotionCreatorId,Description,Duration,Venue,PromotionType,Cost,PromotionDate")] Promotion promotion)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PhoneNumber,Email")] PromotionCreator promotionCreator)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(promotion).State = EntityState.Modified;
+                db.Entry(promotionCreator).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(promotion);
+            return View(promotionCreator);
         }
 
-        // GET: Promotions/Delete/5
+        // GET: PromotionCreators/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Promotion promotion = db.Promotions.Find(id);
-            if (promotion == null)
+            PromotionCreator promotionCreator = db.PromotionCreators.Find(id);
+            if (promotionCreator == null)
             {
                 return HttpNotFound();
             }
-            return View(promotion);
+            return View(promotionCreator);
         }
 
-        // POST: Promotions/Delete/5
+        // POST: PromotionCreators/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Promotion promotion = db.Promotions.Find(id);
-            db.Promotions.Remove(promotion);
+            PromotionCreator promotionCreator = db.PromotionCreators.Find(id);
+            db.PromotionCreators.Remove(promotionCreator);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AttendeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PromotionCreatorsController.cs" />
     <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,6 +255,11 @@
     <Content Include="Views\Attendees\Details.cshtml" />
     <Content Include="Views\Attendees\Edit.cshtml" />
     <Content Include="Views\Attendees\Index.cshtml" />
+    <Content Include="Views\Promotions\Create.cshtml" />
+    <Content Include="Views\Promotions\Delete.cshtml" />
+    <Content Include="Views\Promotions\Details.cshtml" />
+    <Content Include="Views\Promotions\Edit.cshtml" />
+    <Content Include="Views\Promotions\Index.cshtml" />
     <Content Include="Views\PromotionCreators\Create.cshtml" />
     <Content Include="Views\PromotionCreators\Delete.cshtml" />
     <Content Include="Views\PromotionCreators\Details.cshtml" />
