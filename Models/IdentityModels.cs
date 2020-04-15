@@ -23,6 +23,7 @@ namespace BeautyWebApp.Models
         public DbSet<Attendee> Attendees { get; set; }
         public DbSet<PromotionCreator> PromotionCreators { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
+        //public DbSet<PromotionAttendee> PromotionAttendees { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

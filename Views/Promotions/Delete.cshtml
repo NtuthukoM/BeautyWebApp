@@ -1,80 +1,87 @@
 ﻿@model BeautyWebApp.Models.Promotion
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Promotion";
 }
 
-<h2>Delete</h2>
+@section Heading {
+    <div class="page-title" style="background-image: url(/content/images/page-title.png)">
+        <h1>@ViewBag.Title</h1>
+    </div>
+}
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Promotion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PromotionCreatorId)
-        </dt>
+<section>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Promotion</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PromotionCreatorId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PromotionCreatorId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PromotionCreatorId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Duration)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Duration)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Venue)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Venue)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Venue)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Venue)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PromotionType)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PromotionType)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PromotionType)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PromotionType)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cost)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cost)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PromotionDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PromotionDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PromotionDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PromotionDate)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</section>

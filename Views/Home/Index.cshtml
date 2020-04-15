@@ -1,31 +1,87 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿<section id="main-slider" class="no-margin">
+    <div class="carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+            <li data-target="#main-slider" data-slide-to="1"></li>
+            <li data-target="#main-slider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+
+            <div class="item active" style="background-image: url(/content/images/slider/bg1.jpg)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="carousel-content">
+                                <h1 class="animation animated-item-1">Help Finding Information Online</h1>
+                                <div class="animation animated-item-2">
+                                    Every new computer that’s brought home from the store has an operating system installed onto it.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--/.item-->
+
+            <div class="item" style="background-image: url(/content/images/slider/bg2.jpg)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="carousel-content">
+                                <h1 class="animation animated-item-1">Help Finding Information Online</h1>
+                                <div class="animation animated-item-2">
+                                    Every new computer that’s brought home from the store has an operating system installed onto it.
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!--/.item-->
+
+        </div>
+        <!--/.carousel-inner-->
+    </div>
+    <!--/.carousel-->
+    <a class="prev hidden-xs hidden-sm" href="#main-slider" data-slide="prev">
+        <i class="fa fa-chevron-left"></i>
+    </a>
+    <a class="next hidden-xs hidden-sm" href="#main-slider" data-slide="next">
+        <i class="fa fa-chevron-right"></i>
+    </a>
+</section>
+<section id="recent-works">
+    <div class="container">
+        <div class="center fadeInDown">
+            <h2>Promotions</h2>
+            <p class="lead">
+                All in store events and promotions are listed in the calendar below. Click on an event for details and to confirm attendance.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cal1"></div>
+            </div>
+        </div>
+        <!--/.row-->
+        <div class="clearfix text-center">
+        </div>
+    </div>
+    <!--/.container-->
+</section>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="~/Scripts/clndr.js"></script>
+
+    <script src="~/scripts/jquery.prettyPhoto.js"></script>
+    <script src="~/scripts/owl.carousel.min.js"></script>
+    <script src="~/scripts/jquery.isotope.min.js"></script>
+    <script src="~/scripts/main.js"></script>
+    <script src="~/scripts/demo.js"></script>
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>

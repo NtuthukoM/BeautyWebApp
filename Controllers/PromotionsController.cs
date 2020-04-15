@@ -7,12 +7,35 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BeautyWebApp.Models;
+using BeautyWebApp.ViewModels;
 
 namespace BeautyWebApp.Controllers
 {
     public class PromotionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        #region Dropdown look ups
+
+        private List<SelectListItem> costs = new List<SelectListItem>()
+            {
+                new SelectListItem(){ Text = "", Value= "" },
+                new SelectListItem(){ Text = "Free", Value= "Free" },
+                new SelectListItem(){ Text = "R5OO", Value= "R5OO" },
+                new SelectListItem(){ Text = "R1000", Value= "R1000" },
+                new SelectListItem(){ Text = "R2000", Value= "R2000" },
+            };
+
+        private List<SelectListItem> promotionTypes = new List<SelectListItem>()
+        {
+            new SelectListItem(){ Text = "", Value= "" },
+            new SelectListItem(){ Text = "Hair cut and treatment", Value= "Hair cut and treatment" },
+            new SelectListItem(){ Text = "Hair and beard trim", Value= "Hair and beard trim" },
+            new SelectListItem(){ Text = "Full set", Value= "Full set" },
+        };
+
+        #endregion
+
 
         // GET: Promotions
         public ActionResult Index()
@@ -38,6 +61,8 @@ namespace BeautyWebApp.Controllers
         // GET: Promotions/Create
         public ActionResult Create()
         {
+            ViewBag.Costs = costs;
+            ViewBag.PromotionTypes = promotionTypes;
             return View();
         }
 
@@ -46,15 +71,38 @@ namespace BeautyWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PromotionCreatorId,Description,Duration,Venue,PromotionType,Cost,PromotionDate")] Promotion promotion)
+        public ActionResult Create(/*[Bind(Include = "Id,PromotionCreatorId,Description,Duration,Venue,PromotionType,Cost,PromotionDate")]*/ 
+            PromotionVM promotion)
         {
             if (ModelState.IsValid)
             {
-                db.Promotions.Add(promotion);
+                //promotion creator:
+                PromotionCreator creator = new PromotionCreator()
+                {
+                    Email = promotion.Email,
+                    FirstName = promotion.FirstName,
+                    LastName = promotion.LastName,
+                    PhoneNumber = promotion.PhoneNumber
+                };
+                db.PromotionCreators.Add(creator);
+                db.SaveChanges();
+
+                Promotion model = new Promotion()
+                {
+                    Cost = promotion.Cost,
+                    Description = promotion.Description,
+                    Duration = promotion.Duration.Value,
+                    PromotionDate = promotion.PromotionDate.Value,
+                    PromotionType = promotion.PromotionType,
+                    Venue = promotion.Venue,
+                    PromotionCreatorId = creator.Id
+                };
+                db.Promotions.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Costs = costs;
+            ViewBag.PromotionTypes = promotionTypes;
             return View(promotion);
         }
 
@@ -70,6 +118,8 @@ namespace BeautyWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Costs = costs;
+            ViewBag.PromotionTypes = promotionTypes;
             return View(promotion);
         }
 
@@ -78,14 +128,22 @@ namespace BeautyWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PromotionCreatorId,Description,Duration,Venue,PromotionType,Cost,PromotionDate")] Promotion promotion)
+        public ActionResult Edit(/*[Bind(Include = "Id,PromotionCreatorId,Description,Duration,Venue,PromotionType,Cost,PromotionDate")]*/ 
+            PromotionVM promotion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(promotion).State = EntityState.Modified;
+                Promotion model = db.Promotions.Find(promotion.Id);
+                PromotionCreator creator = db.PromotionCreators.Find(promotion.PromotionCreatorId);
+
+
+                db.Entry(model).State = EntityState.Modified;
+                db.Entry(creator).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Costs = costs;
+            ViewBag.PromotionTypes = promotionTypes;
             return View(promotion);
         }
 
