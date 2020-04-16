@@ -1,4 +1,4 @@
-﻿@model BeautyWebApp.Models.Promotion
+﻿@model BeautyWebApp.ViewModels.PromotionVM
 
 @{
     ViewBag.Title = "Promotion Details";
@@ -12,16 +12,7 @@
 
 <section>
     <div>
-        <h4>Promotion</h4>
-        <hr />
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.PromotionCreatorId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PromotionCreatorId)
-            </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.Description)
@@ -67,11 +58,68 @@
                 @Html.DisplayNameFor(model => model.PromotionDate)
             </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.PromotionDate)
+            <dd>                
+                @Model.PromotionDate.Value.ToShortDateString()
             </dd>
 
         </dl>
+        <h2>Attendees</h2>
+        @if (Model.Attendees != null && Model.Attendees.Count > 0)
+        {
+            <div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Surname
+                        </th>
+                        <th>
+                            Phone Number
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            Email
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model.Attendees)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <p>
+                No attendees have registered.
+            </p>
+        }
+
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

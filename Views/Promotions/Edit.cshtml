@@ -1,4 +1,4 @@
-﻿@model BeautyWebApp.Models.Promotion
+﻿@model BeautyWebApp.ViewModels.PromotionVM
 
 @{
     ViewBag.Title = "Edit Promotion";
@@ -9,7 +9,7 @@
         <h1>@ViewBag.Title</h1>
     </div>
 }
-
+<link href="~/Scripts/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
 <section>
     @using (Html.BeginForm())
     {
@@ -20,60 +20,101 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.PromotionCreatorId)
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.PromotionCreatorId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PromotionCreatorId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PromotionCreatorId, "", new { @class = "text-danger" })
+                <div class="panel panel-default">
+                    <div class="panel-heading">Promotion</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Venue, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Venue, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Venue, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PromotionType, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.PromotionType, (List<SelectListItem>)ViewBag.PromotionTypes, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PromotionType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.Cost, (List<SelectListItem>)ViewBag.Costs, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PromotionDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PromotionDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PromotionDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Promotion Creator Details</div>
+                    <div class="panel-body">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Venue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Venue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Venue, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.PromotionType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PromotionType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PromotionType, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.PromotionDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PromotionDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PromotionDate, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
 
@@ -94,4 +135,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+    $('input[type="datetime"]').datepicker({
+    autoclose: true
+});
+    </script>
 }

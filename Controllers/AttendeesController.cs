@@ -10,6 +10,7 @@ using BeautyWebApp.Models;
 
 namespace BeautyWebApp.Controllers
 {
+
     public class AttendeesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -36,8 +37,9 @@ namespace BeautyWebApp.Controllers
         }
 
         // GET: Attendees/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            ViewBag.PromotionId = id;
             return View();
         }
 
@@ -46,13 +48,22 @@ namespace BeautyWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PhoneNumber,Address,Email,FirstName,LastName")] Attendee attendee)
+        public ActionResult Create(Attendee attendee)
         {
             if (ModelState.IsValid)
             {
+                int promotionId = attendee.Id;
+                attendee.Id = 0;
                 db.Attendees.Add(attendee);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                PromotionAttendee promotion = new PromotionAttendee()
+                {
+                    PromotionId = promotionId,
+                    AttendeeId = attendee.Id
+                };
+                db.PromotionAttendees.Add(promotion);
+                db.SaveChanges();
+                return RedirectToAction("Index","Home");
             }
 
             return View(attendee);

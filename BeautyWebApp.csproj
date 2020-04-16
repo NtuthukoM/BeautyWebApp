@@ -184,6 +184,14 @@
     <Compile Include="Migrations\202004141518392_promotion_date.Designer.cs">
       <DependentUpon>202004141518392_promotion_date.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004161520509_tblPromotionAttendee.cs" />
+    <Compile Include="Migrations\202004161520509_tblPromotionAttendee.Designer.cs">
+      <DependentUpon>202004161520509_tblPromotionAttendee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004161759510_tblPromotionAttendee01.cs" />
+    <Compile Include="Migrations\202004161759510_tblPromotionAttendee01.Designer.cs">
+      <DependentUpon>202004161759510_tblPromotionAttendee01.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendee.cs" />
@@ -194,6 +202,7 @@
     <Compile Include="Models\PromotionCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\PromotionSummaryVM.cs" />
     <Compile Include="ViewModels\PromotionVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -420,6 +429,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004141518392_promotion_date.resx">
       <DependentUpon>202004141518392_promotion_date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004161520509_tblPromotionAttendee.resx">
+      <DependentUpon>202004161520509_tblPromotionAttendee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004161759510_tblPromotionAttendee01.resx">
+      <DependentUpon>202004161759510_tblPromotionAttendee01.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

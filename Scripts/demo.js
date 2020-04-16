@@ -10,6 +10,7 @@ $(document).ready( function() {
     // Here's some magic to make sure the dates are happening this month.
     var thisMonth = moment().format('YYYY-MM');
     // Events to load into calendar
+    /*
     var eventArray = [
         {
             title: 'Multi-Day Event',
@@ -22,74 +23,87 @@ $(document).ready( function() {
         }, {
             date: thisMonth + '-27',
             title: 'Single Day Event'
-        }
+        }, { id: 1, date: '2020-09-09', title: 'CLNDR GitHub Page Finished', url: 'http://github.com/kylestetz/CLNDR' },
+        { id: 2, date: '2020-09-15', title: 'TEST EVENT', url: 'http://github.com/kylestetz/CLNDR' }
     ];
+    */
+    $.getJSON("/Promotions/summaries", function (data) {
+        var eventArray = data;
 
-    // The order of the click handlers is predictable. Direct click action
-    // callbacks come first: click, nextMonth, previousMonth, nextYear,
-    // previousYear, nextInterval, previousInterval, or today. Then
-    // onMonthChange (if the month changed), inIntervalChange if the interval
-    // has changed, and finally onYearChange (if the year changed).
-    calendars.clndr1 = $('.cal1').clndr({
-        events: eventArray,
-        clickEvents: {
-            click: function (target) {
-                console.log('Cal-1 clicked: ', target);
+        // The order of the click handlers is predictable. Direct click action
+        // callbacks come first: click, nextMonth, previousMonth, nextYear,
+        // previousYear, nextInterval, previousInterval, or today. Then
+        // onMonthChange (if the month changed), inIntervalChange if the interval
+        // has changed, and finally onYearChange (if the year changed).
+        calendars.clndr1 = $('.cal1').clndr({
+            events: eventArray,
+            clickEvents: {
+                click: function (target) {
+                    console.log('x - Cal-1 clicked: ', target);
+                    $('#pnlPromotionDetails').html('');
+                    if (target.events.length === 1) {
+                        let evt = target.events[0];
+                        var template = $('#promotionTpl').html();
+                        var html = Mustache.to_html(template, evt);
+                        $('#pnlPromotionDetails').html(html);
+                    }
+                },
+                today: function () {
+                    console.log('Cal-1 today');
+                },
+                nextMonth: function () {
+                    console.log('Cal-1 next month');
+                },
+                previousMonth: function () {
+                    console.log('Cal-1 previous month');
+                },
+                onMonthChange: function () {
+                    console.log('Cal-1 month changed');
+                },
+                nextYear: function () {
+                    console.log('Cal-1 next year');
+                },
+                previousYear: function () {
+                    console.log('Cal-1 previous year');
+                },
+                onYearChange: function () {
+                    console.log('Cal-1 year changed');
+                },
+                nextInterval: function () {
+                    console.log('Cal-1 next interval');
+                },
+                previousInterval: function () {
+                    console.log('Cal-1 previous interval');
+                },
+                onIntervalChange: function () {
+                    console.log('Cal-1 interval changed');
+                }
             },
-            today: function () {
-                console.log('Cal-1 today');
+            multiDayEvents: {
+                singleDay: 'date',
+                endDate: 'endDate',
+                startDate: 'startDate'
             },
-            nextMonth: function () {
-                console.log('Cal-1 next month');
-            },
-            previousMonth: function () {
-                console.log('Cal-1 previous month');
-            },
-            onMonthChange: function () {
-                console.log('Cal-1 month changed');
-            },
-            nextYear: function () {
-                console.log('Cal-1 next year');
-            },
-            previousYear: function () {
-                console.log('Cal-1 previous year');
-            },
-            onYearChange: function () {
-                console.log('Cal-1 year changed');
-            },
-            nextInterval: function () {
-                console.log('Cal-1 next interval');
-            },
-            previousInterval: function () {
-                console.log('Cal-1 previous interval');
-            },
-            onIntervalChange: function () {
-                console.log('Cal-1 interval changed');
+            showAdjacentMonths: true,
+            adjacentDaysChangeMonth: false
+        });
+
+        // Bind all clndrs to the left and right arrow keys
+        $(document).keydown(function (e) {
+            // Left arrow
+            if (e.keyCode === 37) {
+                calendars.clndr1.back();
+                calendars.clndr2.back();
+                calendars.clndr3.back();
             }
-        },
-        multiDayEvents: {
-            singleDay: 'date',
-            endDate: 'endDate',
-            startDate: 'startDate'
-        },
-        showAdjacentMonths: true,
-        adjacentDaysChangeMonth: false
-    });
 
-    // Bind all clndrs to the left and right arrow keys
-    $(document).keydown( function(e) {
-        // Left arrow
-        if (e.keyCode == 37) {
-            calendars.clndr1.back();
-            calendars.clndr2.back();
-            calendars.clndr3.back();
-        }
+            // Right arrow
+            if (e.keyCode === 39) {
+                calendars.clndr1.forward();
+                calendars.clndr2.forward();
+                calendars.clndr3.forward();
+            }
+        });
+        });
 
-        // Right arrow
-        if (e.keyCode == 39) {
-            calendars.clndr1.forward();
-            calendars.clndr2.forward();
-            calendars.clndr3.forward();
-        }
-    });
 });

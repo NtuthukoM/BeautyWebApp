@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeautyWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace BeautyWebApp.ViewModels
         public string PhoneNumber { get; set; }
         [Required]
         public string Email { get; set; }
+
+        public List<Attendee> Attendees { get; set; }
 
     }
 }

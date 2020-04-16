@@ -78,8 +78,14 @@
 
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Promotions", "Index", "Promotions")</li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Promotions", "Index", "Promotions")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
