@@ -10,5 +10,8 @@ namespace BeautyWebApp.Models
         public int Id { get; set; }
         public int PromotionId { get; set; }
         public int AttendeeId { get; set; }
+
+        public virtual Promotion Promotion { get; set; }
+        public virtual Attendee Attendee { get; set; }
     }
 }

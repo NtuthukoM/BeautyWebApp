@@ -136,6 +136,7 @@ namespace BeautyWebApp.Controllers
 
         //
         // GET: /Account/Register
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();

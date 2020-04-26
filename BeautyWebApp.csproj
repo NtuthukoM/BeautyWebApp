@@ -192,6 +192,10 @@
     <Compile Include="Migrations\202004161759510_tblPromotionAttendee01.Designer.cs">
       <DependentUpon>202004161759510_tblPromotionAttendee01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004261747393_relationships.cs" />
+    <Compile Include="Migrations\202004261747393_relationships.Designer.cs">
+      <DependentUpon>202004261747393_relationships.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendee.cs" />
@@ -435,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004161759510_tblPromotionAttendee01.resx">
       <DependentUpon>202004161759510_tblPromotionAttendee01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004261747393_relationships.resx">
+      <DependentUpon>202004261747393_relationships.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

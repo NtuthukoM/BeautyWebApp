@@ -12,5 +12,7 @@ namespace BeautyWebApp.Models
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+
+        public virtual List<Promotion> Promotions { get; set; }
     }
 }

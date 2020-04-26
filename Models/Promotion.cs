@@ -16,6 +16,6 @@ namespace BeautyWebApp.Models
         public string Cost { get; set; }
         public DateTime PromotionDate { get; set; }
 
-        public virtual List<PromotionCreator> PromotionCreators { get; set; }
+        public virtual PromotionCreator PromotionCreator { get; set; }
     }
 }
